@@ -18,7 +18,7 @@ module.exports.create = (community, url) => {
                                 area: Number.parseFloat(r.match(/data-label='Sq. Ft.'.*?(?<area>[0-9,]+).*?<\/td/).groups.area),
                                 rent: Number.parseFloat(r.match(/data-label='Rent'.*?(?<rent>[0-9,]+).*?<\/td/).groups.rent.replace(/,/g,'')),
                                 moveIn: mtz(
-                                    r.match(/ApplyNowClick(.*?(?<moveIn>(\d{1,2}\/){2}\d{4}).*?)/).groups.moveIn
+                                    r.match(/ApplyNowClick\(.*?(?<moveIn>(\d{1,2}\/){2}\d{4}).*?\)/).groups.moveIn
                                     ,'M/D/YYYY').format('YYYY-MM-DD')
                             }
                         }));
