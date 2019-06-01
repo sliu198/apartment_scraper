@@ -12,7 +12,7 @@ module.exports.create = (community, url) => {
                     let data = '';
                     res.on('data', d => data += d);
                     res.on('close', () => {
-                        resolve(data.match(/<tr[^>]*class='AvailUnitRow'[^>]*>.*?<\/tr/g).map(r => {
+                        resolve((data.match(/<tr[^>]*class='AvailUnitRow'[^>]*>.*?<\/tr/g) || []).map(r => {
                             return {
                                 community,
                                 area: Number.parseFloat(r.match(/data-label='Sq. Ft.'.*?(?<area>[0-9,]+).*?<\/td/).groups.area),
